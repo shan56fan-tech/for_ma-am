@@ -1,0 +1,427 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  background-color: #f4f1ea;
+  color: #333333;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Notebook Grid Container */
+.app-container {
+  width: 100%;
+  max-width: 430px;
+  height: 100%;
+  height: 100dvh;
+  position: relative;
+  background-color: #faf8f5;
+  background-image: 
+    linear-gradient(to right, rgba(200, 200, 220, 0.22) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 200, 220, 0.22) 1px, transparent 1px);
+  background-size: 20px 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Screen Shell */
+.screen {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  padding: 16px 18px calc(14px + env(safe-area-inset-bottom, 14px)) 18px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* Scrollable Inner Body (Prevents pushing buttons off screen) */
+.screen-body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding: 6px 0;
+}
+
+.screen-body.center {
+  justify-content: center;
+}
+
+/* Header & Decorations */
+.decorative-plane {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 20px;
+  opacity: 0.7;
+}
+
+.small-tag {
+  font-size: 13px;
+  color: #666;
+  font-weight: 500;
+}
+
+.main-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2b2b2b;
+}
+
+.highlight { color: #e63946; }
+.highlight-purple { color: #6c5ce7; }
+
+.greeting-heading {
+  font-size: 26px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.header-content {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.header-content h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2b2b2b;
+  line-height: 1.25;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: #666666;
+  margin-top: 4px;
+}
+
+.hint-text {
+  font-size: 11px;
+  color: #888888;
+  margin-top: 8px;
+  text-align: center;
+}
+
+/* Teacher Avatar */
+.illustration-box {
+  position: relative;
+  margin: 18px 0;
+}
+
+.teacher-avatar {
+  font-size: 70px;
+  background: #ffffff;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  border: 4px solid #fff;
+}
+
+.decor-sparkles {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 22px;
+}
+
+.status-subtitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e63946;
+  background: #ffe3e5;
+  padding: 5px 14px;
+  border-radius: 20px;
+}
+
+/* Quote Card */
+.quote-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  border-left: 4px solid #e63946;
+  width: 100%;
+}
+
+.handwritten-text {
+  font-family: 'Caveat', cursive;
+  font-size: 21px;
+  line-height: 1.35;
+  color: #333;
+}
+
+/* Interactive Lesson Grid (Screen 3) */
+.lesson-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.lesson-card {
+  height: 115px;
+  border-radius: 12px;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+}
+
+.lesson-card:active {
+  transform: scale(0.95);
+}
+
+.lesson-card.pink { background-color: #ffe5ec; }
+.lesson-card.green { background-color: #e8f5e9; }
+.lesson-card.yellow { background-color: #fff9c4; }
+.lesson-card.blue { background-color: #e1f5fe; }
+
+.card-front, .card-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-back {
+  display: none;
+  font-size: 11px;
+  line-height: 1.3;
+  color: #2b2b2b;
+  font-weight: 500;
+}
+
+.lesson-card.revealed .card-front { display: none; }
+.lesson-card.revealed .card-back { display: flex; }
+
+.lesson-num {
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #777;
+  margin-bottom: 2px;
+}
+
+.icon {
+  font-size: 22px;
+  margin: 2px 0;
+}
+
+.lesson-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2b2b2b;
+}
+
+/* Polaroid Card (Screen 4) */
+.polaroid-wrapper {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: 10px 0;
+}
+
+.polaroid-card {
+  background: #ffffff;
+  padding: 12px 12px 16px 12px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  width: 88%;
+  text-align: center;
+  position: relative;
+  transform: rotate(-1.5deg);
+}
+
+.polaroid-card:active {
+  transform: rotate(0deg) scale(0.98);
+}
+
+.photo-frame {
+  width: 100%;
+  height: 160px;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #eee;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-caption {
+  font-family: 'Caveat', cursive;
+  font-size: 20px;
+  margin-top: 8px;
+  color: #333;
+}
+
+.counter-badge {
+  position: absolute;
+  bottom: -10px;
+  right: 12px;
+  background: #6c5ce7;
+  color: #fff;
+  font-size: 9px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Notebook Page (Screen 5) */
+.notebook-page {
+  background: #ffffff;
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  border-left: 4px solid #ff7675;
+  margin: 8px 0;
+}
+
+.notebook-lines {
+  background-image: linear-gradient(to bottom, transparent 95%, #e1e8ed 95%);
+  background-size: 100% 24px;
+  line-height: 24px;
+}
+
+.handwritten-note {
+  font-family: 'Caveat', cursive;
+  font-size: 19px;
+  color: #2d3436;
+  line-height: 24px;
+  text-align: left;
+}
+
+.signature {
+  display: block;
+  margin-top: 8px;
+  font-weight: 700;
+  color: #d63031;
+}
+
+/* Blackboard (Screen 6) */
+.dismissed-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #2d3436;
+  margin-bottom: 8px;
+}
+
+.blackboard-container {
+  width: 100%;
+  padding: 10px;
+  background: #795548;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  margin-bottom: 12px;
+}
+
+.blackboard-frame {
+  background: #1b3b2b;
+  border: 2px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 18px 14px;
+  text-align: center;
+}
+
+.chalk-text {
+  font-family: 'Caveat', cursive;
+  color: #ffffff;
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.chalk-sign {
+  display: block;
+  margin-top: 12px;
+  font-size: 15px;
+  color: #a8e6cf;
+  font-weight: 600;
+}
+
+.sticky-note {
+  background: #ffeaa7;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transform: rotate(2deg);
+  text-align: center;
+  font-size: 15px;
+  color: #2d3436;
+}
+
+/* Guaranteed Visible Bottom Button Wrapper */
+.footer-area {
+  width: 100%;
+  flex-shrink: 0;
+  padding-top: 8px;
+  z-index: 10;
+}
+
+.nav-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 28px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+
+.nav-btn.primary {
+  background: #e63946;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.35);
+}
+
+.nav-btn:active {
+  transform: scale(0.97);
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Happy Teacher's Day! 📚</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- SCREEN 1: Entry / Welcome -->
+    <div class="screen active" id="screen-1">
+      <div class="decorative-plane">✈️</div>
+      <div class="screen-body">
+        <p class="small-tag">A little surprise</p>
+        <h1 class="main-title">for you...</h1>
+        
+        <div class="illustration-box">
+          <div class="teacher-avatar">👩‍🏫</div>
+          <div class="decor-sparkles">✨</div>
+        </div>
+
+        <p class="status-subtitle">Class is about to begin 🔔</p>
+      </div>
+
+      <div class="footer-area">
+        <button class="nav-btn primary" onclick="goToScreen(2)">Enter Class &gt;</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 2: Greeting & Quote -->
+    <div class="screen" id="screen-2">
+      <div class="decorative-plane">✈️</div>
+      <div class="screen-body">
+        <h2 class="greeting-heading">Happy Teacher's Day,<br><span class="highlight">Ma'am! 🌸</span></h2>
+        
+        <div class="quote-card">
+          <p class="handwritten-text">
+            "Teaching is not just a profession... it is the art of inspiring minds, touching hearts, and shaping the future."
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-area">
+        <button class="nav-btn primary" onclick="goToScreen(3)">Start Lessons &gt;</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 3: Interactive Lesson Cards -->
+    <div class="screen" id="screen-3">
+      <div class="screen-body">
+        <div class="header-content">
+          <h2>Today's Lesson</h2>
+          <p class="subtitle">Some of the most valuable things I've learned from you.</p>
+        </div>
+
+        <div class="lesson-grid">
+          <!-- Card 1 -->
+          <div class="lesson-card pink" onclick="revealLesson(this)">
+            <div class="card-front">
+              <span class="lesson-num">Lesson 01</span>
+              <span class="icon">💡</span>
+              <span class="lesson-title">Knowledge</span>
+            </div>
+            <div class="card-back">
+              <p>You taught me to stay curious, ask questions, and never stop learning.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="lesson-card green" onclick="revealLesson(this)">
+            <div class="card-front">
+              <span class="lesson-num">Lesson 02</span>
+              <span class="icon">🌱</span>
+              <span class="lesson-title">Patience</span>
+            </div>
+            <div class="card-back">
+              <p>You taught me that real growth takes time and believing in yourself is key.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="lesson-card yellow" onclick="revealLesson(this)">
+            <div class="card-front">
+              <span class="lesson-num">Lesson 03</span>
+              <span class="icon">⭐</span>
+              <span class="lesson-title">Confidence</span>
+            </div>
+            <div class="card-back">
+              <p>You encouraged me when I doubted myself and pushed me to do my best.</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="lesson-card blue" onclick="revealLesson(this)">
+            <div class="card-front">
+              <span class="lesson-num">Lesson 04</span>
+              <span class="icon">📚</span>
+              <span class="lesson-title">Wisdom</span>
+            </div>
+            <div class="card-back">
+              <p>You showed me that kindness, discipline, and integrity matter most.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint-text">Tap on a lesson to see what I learned</p>
+      </div>
+
+      <div class="footer-area">
+        <button class="nav-btn primary" onclick="goToScreen(4)">View Memories &gt;</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 4: Photo Carousel -->
+    <div class="screen" id="screen-4">
+      <div class="screen-body">
+        <div class="header-content">
+          <h2>Lessons I'll<br><span class="highlight-purple">Always Remember</span></h2>
+        </div>
+
+        <div class="polaroid-wrapper" onclick="nextPhoto()">
+          <div class="polaroid-card">
+            <div class="photo-frame">
+              <img id="carousel-img" src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=600&auto=format&fit=crop" alt="Classroom Inspiration" />
+            </div>
+            <p id="carousel-caption" class="photo-caption">Guidance & Inspiration 📖</p>
+            <div class="counter-badge" id="photo-counter">01 / 03</div>
+          </div>
+        </div>
+        <p class="hint-text">Tap photo to see next</p>
+      </div>
+
+      <div class="footer-area">
+        <button class="nav-btn primary" onclick="goToScreen(5)">Final Lesson &gt;</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 5: Notebook Note -->
+    <div class="screen" id="screen-5">
+      <div class="screen-body">
+        <div class="header-content">
+          <h2>One Last Lesson</h2>
+          <p class="subtitle">There's just one more thing I want to tell you...</p>
+        </div>
+
+        <div class="notebook-page">
+          <div class="notebook-lines">
+            <p class="handwritten-note">
+              Thank you...<br><br>
+              For being an extraordinary teacher, a guiding light, and a true inspiration.<br><br>
+              You don't just teach lessons from books—you teach lessons for life. Thank you for your dedication, kindness, and continuous support.<br><br>
+              <span class="signature">Respectfully,<br>Your Student 💐</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-area">
+        <button class="nav-btn primary" onclick="goToScreen(6)">End Class &gt;</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 6: Class Dismissed (Final Screen) -->
+    <div class="screen" id="screen-6">
+      <div class="screen-body center">
+        <h2 class="dismissed-title">Class Dismissed. 🔔</h2>
+
+        <div class="blackboard-container">
+          <div class="blackboard-frame">
+            <p class="chalk-text">
+              "Education is the most powerful weapon which you can use to change the world.<br><br>
+              Thank you for making learning a joy every single day!"
+            </p>
+            <span class="chalk-sign">— Happy Teacher's Day</span>
+          </div>
+        </div>
+
+        <div class="sticky-note">
+          <p>Happy Teacher's Day,<br><strong>Ma'am! 🌸</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
